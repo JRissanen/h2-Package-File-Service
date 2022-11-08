@@ -240,6 +240,11 @@ __Salt State Functions__
 
 (Saltstack. 2016.)
 
+## Tehtävät
+
+__a) Demonin asetukset__
+
+
 
 
 ## Lähteet

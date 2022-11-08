@@ -62,7 +62,29 @@ __Salt Approach__
   * Kaikkien Slave-koneiden tarvitsemat komennot ovat jo paikallisessa muistissa nopeaa vastaamista varten.
 
 * Salt Loves To Scale
-  * 
+  * Salt on suunniteltu korkealla suorituskyvyllä ja skaalattavuudella.
+  * Salt Master- ja Slave-koneiden välillä toimiva ZeroMQ tai pelkkä TCP, antavat Saltille suorityskyvyssä edun, kilpailijoihin verrattuna.
+  * Viestit sarjallistetaan MessagePack:in avulla.
+  * Salt käyttää Python Tornado:a tahdistamattomana verkkokirjastona.
+
+* Normalize everything
+  * Salt komennot ajetaan samalla tavalla Slave-koneen käyttöjärjestelmästä riippumatta.
+  * Salt tiivistää jokaisen käyttöjärjestelmän yksityiskohdat, laitteistot ja järjestelmän työkalut.
+
+* Manage everything
+  * Saltia voi ajaa lähes kaikkialla, missä voi myös ajaa Pythonia.
+  * Ainoa vaatimus Saltin käyttöön on, että laitee tukee jotain verkko protokollaa. (Proxy Minion System).
+
+* Automate Everything
+  * Salt Master-kone käyttää ohjeina erilaisia tiloja (state) Slave-koneille, joten järjestelmän oletusasetuksetkin on mahdollista määrittää tiloilla.
+
+* Programming optional
+  * Saltin käyttäminen ei vaadi minkään erityisen ohjelmointikielen opettelemista tai osaamista.
+  * Saltia kirjoitetaan infrastruktuuri koodina.
+
+__Plug-ins__
+
+* 
 
 
 

@@ -242,8 +242,31 @@ __Salt State Functions__
 
 ## Tehtävät
 
-__a) Demonin asetukset__
+Asensin tehtäviä varten puhtaan Linux Ubuntu 22.04.1 LTS järjestelmän Virtual Box Versioon 6.1.40. </br>
+Kaikki tehtävät on tehty edellä mainitussa ympäristössä sekä toisessa virtuaalikoneessa, joka on Ubuntu 22.04.1 Live-Server. </br>
+Puhtaan virtuaalikoneen käyttäjäksi määritin "julle" ja koneen nimeksi julle-TestiUbuntu.</br>
+Live-Server virtuaalikoneen käyttäjä on myös "julle" ja koneen nimi on julleserver. </br>
+Tehtävät on tehty 8.11.2022 klo 13:00 - 23:00.
 
+__a) 
+Demonin asetukset. Säädä jokin demoni (asenna+tee asetukset+testaa) package-file-service -rakenteella.</br>
+Ensin käsin: muista tehdä ja raportoida asennus ensin käsin, vasta sitten automatisoiden.</br>
+Jos osaat hyvin, voit tehdä jonkin eri asetuksen kuin tunnilla.</br>
+Harjoitusta varten tulee siis tehdä alusta ja raportoida samalla.__
+
+Ensimmäiseksi avasin Virtual Boxissani olevan Ubuntu 22.04.1 Live-Serverin, jonne loin tekstitiedoston nimeltä ssh_yhteyden_testaus.txt</br>
+Loin tekstitiedoston komennolla: `nano ssh_yhteyden_testaus.txt`. Kirjoitin sisällöksi "Tyhjää täynnä".</br>
+Ajatukseni siis oli siirtää kyseinen tiedosto sftp yhteyden avulla puhtaalle virtuaalikoneelleni. Sftp käyttää myös ssh:ta, joten asennettava ohjelma on toimivuuden testaamisen kannalta sama, eli openssh-server.
+
+Seuraavaksi asensin ssh:n puhtaalle virtuaalikoneelle komennolla: `apt-get install openssh-server`. </br>
+Asennus onnistui ja tarkistin sen käyttämällä komentoa: `systemctl status ssh`. </br>
+Se näytti vihreällä Active-kohdan tekstin: `Active: active (running)`, joten kaikki kunnossa tähän asti.
+
+Sitten muodostin yhteyden komennolla: `sftp julle@julleserver`. </br>
+Käytin komentoa: `ls` nähdäkseni aiemmin luomani tiedoston ja komentoa: `get ssh_yhteyden_testaus.txt` kopioidakseni kyseisen tiedoston yhteyden testausta varten.</br>
+Kaikki toimi niinkuin pitikin, joten homma selvä.
+
+![Screenshot 2022-11-08 214649](https://user-images.githubusercontent.com/116954333/200665826-5763a5a1-52fc-4645-8d08-d756326839ac.png)
 
 
 

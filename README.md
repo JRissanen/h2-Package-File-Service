@@ -8,3 +8,5 @@ Slave-koneiden sijainnilla ei ole hallinnan kannalta merkitystä, ne voivat olla
 * NAT:in takana
 * Palomuurin takana
 * Tuntemattomassa osoitteessa
+Master- ja Slave-koneiden asentaminen ja käyttö.</br>
+Kun viitataan Master-koneella tehtäviin komentoihin koodissa käyttäjä on "master$" ja kun viitataan Slave-koneeseen käyttäjä on "slave$".</br>

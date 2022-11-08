@@ -82,15 +82,163 @@ __Salt Approach__
   * Saltin käyttäminen ei vaadi minkään erityisen ohjelmointikielen opettelemista tai osaamista.
   * Saltia kirjoitetaan infrastruktuuri koodina.
 
+(Saltstack. 2016.)
+
 __Plug-ins__
 
-* 
+* Pluggable Subsystems
+  * Salt pitää sisällään yli 20 liitännäistä alijärjestelmää.
+  * Yleisimpiin alijärjestelmiin kuuluu esimerkiksi:
+   * Tunnistautuminen
+   * Tiedostopalvelin
+   * Turvallinen tietopankki
+   * Konfigurointi
 
+* Subsystem During A Job Run
+  * Tehtävien ajaminen tapahtuu monen alijärjestelmän avulla.
 
+* Salt Components
+  * Jokainen Saltin komponentti on liitännäinen alijärjestelmä.
 
+* Virtual Modules
+  * Koska moni käyttöjärjestelmä on hyvin erilainen, Salt hyödyntää virtuaali moduuleja tiivistäessään käyttöjärjestelmien eri ominaisuuksia.
 
+(Saltstack. 2016.)
 
+__Communication__
 
+* Architecture Model
+  * Salt käyttää server-agent-mallia, eli Master- ja Slave-koneita.
+  * Master-koneet lähettävät ohjeita Slave-koneille.
+
+* Communcation Model
+  * Salt käyttää publish-subscribe mallia.
+  * Salt Master-kone käyttää portteja 4505 ja 4506, joiden täytyy olla auki, hyväksyäkseen saapuvat pyynnöt.
+
+* Salt Minion Authentication
+  * Ensimmäisen käynnistyksen yhteydessä Slave-kone etsii järjestelmän nimeltä salt.
+  * Löytäessään saltin, Slave-kone lähettää oman julkisen avaimensa Master-koneelle.
+  * Master-koneen täytyy hyväksyä avain.
+  * Hyväksymisen jälkeen Master-kone antaa oman julkisen avaimensa sekä kiertävän AES-avaimen.
+  * AES-avainta käytetään koneiden välisen viesetinnän salaamiseen.
+
+(Saltstack. 2016.)
+
+__Remote Execution__
+
+* Remote Execution
+  * Saltin alkuperäinen tarkoitus oli olla etäsuoritusta tukeva työkalu.
+  * Komennolla: `salt '*' pkg.install git` pystyy asentamaan jokaiselle Slave-koneelle git:in.
+
+(Saltstack. 2016.)
+
+__States__
+
+* State System
+  * Tila komennot on suunniteltu toimimaan eri käyttöjärjestelmien ja alustojen välillä.
+  * Kaikki kohde järjestelmät pystyvät ajamaan komennot samaanaikaan.
+  * Salt hyödyntää satoja Python kirjastoja eri moduulien konfiguraatioiden hallinnassa.
+
+(Saltstack. 2016.)
+
+__Runners__
+
+* Salt Runners
+  * Ruuner-alijärjestelmä sisältää moduulit, jotka ajetaan Master-koneella.
+  * Runner moduuleita kutsutaan komennolla: `salt-run`.
+
+(Saltstack. 2016.)
+
+__System Data__
+
+* Grains
+  * Hyödynnetään kun kerätään tietoa järjestelmistä.
+  * Kerätään automaattisesti kun Slave-kone käynnistetään.
+
+* Salt Pillar
+  * Hyödynnetään kun toimitetaan tietoa järjestelmiin.
+  * Data salataan kohde Slave-koneen julkisella avaimella.
+
+* Salt Mine
+  * Hyödynnetään kun jaetaan dataa Slave-koneiden välillä.
+  * Sisältää yleisiä ohjeita, joita moni Slave-kone voi hyödyntää.
+
+(Saltstack. 2016.)
+
+__Python__
+
+* Python
+  * Pythonia ei tarvitse osata kirjoittaa, mutta sitä on hyvä osata lukea.
+  * Jokainen Saltin liitännäinen alijärjestelmä on myös Python moduuli.
+  * Kaikki moduulit sijaitsevat salt-kansiossa.
+  * Python moduulin pääte on: `.py`.
+
+(Saltstack. 2016.)
+
+## SaltStack Fundamentals
+
+__Demo Environment__
+
+* Demo Environment
+  * SaltStackin käytön oppii parhaiten itse tekemällä, pelkän lukemisen sijaan.
+  * Kokeilut kannattaa tehdä turvallisessa ympäristössä, esim. virtuaalikoneella.
+
+(Saltstack. 2016.)
+
+__Execute Commands__
+
+* Salt commands
+  * Salt komentoja voi ajaa syntaksilla: `salt 'target' module.function arguments`.
+
+(Saltstack. 2016.)
+
+__Targeting__
+
+* Targeting
+  * Salt komennoilla on mahdollista ajaa komentoja yhdelle tai useammalle Slave-koneelle.
+  * 'target'- määrittää aina kohteen.
+  * Esimerkiksi komento: `salt-call '*'` kutsuu jokaista Slave-konetta.
+  * Komento: `salt-call 'Slave1'` kutsuu vain Slave1-nimistä Slave-konetta.
+
+(Saltstack. 2016.)
+
+__Create A Salt State__
+
+* Create A Salt State
+  * Kaikki Salt tilat sijaitsevat hakemistossa: `/srv/salt`, joka pitää itse luoda.
+  * Esimerkki tilasta:
+   ```
+  install_network_packages:
+    pkg.istalled:
+      - pkgs:
+        - rsync
+        - lftp
+        - curl
+  ```
+  * Sisennykset ovat aina kaksi välilyötniä.
+  * Tilat tallennetaan aina `init.sls`-tiedostoina.
+  * Tilat, jotka ovat nimeltään: `top.sls`, mahdollistavat monen eri tilan samanaikasen ajamisen.
+
+(Saltstack. 2016.)
+
+## SaltStack Configuration Management - Functions
+
+__Salt State Functions__
+
+* Syntax
+  * Tilat määritellään YAML:lla.
+  * Ensimmäinen rivi on tilan nimi, eli id.
+  * Seuraavalle riville tulee moduuli ja functio, joka ajetaan kutsuttaessa.
+  * Lopuksi määritellään muuttujat/arvot ja ensimmäinen arvo on aina nimi.
+  * Esimerkki tilan rakenteesta:
+    ```
+    install vim:
+      pkg.istalled:
+        - name: vim
+    ```
+  * Tiloja voi tehdä lukuisia määriä eri tarkoituksia varten.
+
+(Saltstack. 2016.)
 
 
 

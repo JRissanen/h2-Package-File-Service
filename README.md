@@ -244,8 +244,9 @@ __Salt State Functions__
 
 Asensin tehtäviä varten puhtaan Linux Ubuntu 22.04.1 LTS järjestelmän Virtual Box Versioon 6.1.40. </br>
 Kaikki tehtävät on tehty edellä mainitussa ympäristössä. </br>
-Puhtaan virtuaalikoneen käyttäjäksi määritin "julle" ja koneen nimeksi julle-TestiUbuntu.</br>
-Tehtävät on tehty 8.11.2022 klo 13:00 - 00:00.
+Puhtaan virtuaalikoneen käyttäjäksi määritin "julle" ja koneen nimeksi "julle-TestiUbuntu".</br>
+Ssh-yhteyden testaamista varten käytin myös Linux Ubuntu 22.04.1 LTS Live-Server virtuaalikonetta, jonka käyttäjä on myös "julle" ja koneen nimi "julleserver". </br>
+Tehtävät on tehty 8.11.2022 klo 13:00 - 23:59, sekä 9.11.2022 klo 15:30 - 23:00.
 
 __a) 
 Demonin asetukset. Säädä jokin demoni (asenna+tee asetukset+testaa) package-file-service -rakenteella.</br>
@@ -253,7 +254,11 @@ Ensin käsin: muista tehdä ja raportoida asennus ensin käsin, vasta sitten aut
 Jos osaat hyvin, voit tehdä jonkin eri asetuksen kuin tunnilla.</br>
 Harjoitusta varten tulee siis tehdä alusta ja raportoida samalla.__
 
-Asensin tehtävässä openssh-serverin ja vaihdoin ssh:n portin.</br>
+__b) 
+Asenna Salt herra-orja niin, että molemmat ovat samalla koneella. </br>
+Voit tehdä ne esimerkiksi uudelle virtuaalikoneelle, niin pääset kokeilemaan puhtaalta pöydältä.
+
+Asensin tehtävässä a) openssh-serverin ja vaihdoin ssh:n portin.</br>
 Käytin mallina Tero Karvisen artikkelia: Pkg-File-Service – Control Daemons with Salt – Change SSH Server Port. </br>
 Luettavissa: https://terokarvinen.com/2018/pkg-file-service-control-daemons-with-salt-change-ssh-server-port/
 
@@ -261,8 +266,34 @@ Ensimmäinen komentoni oli `sudo apt-get update`.</br>
 Sitten asensin Salt-Masterin ja Mionionin komennoilla: `sudo apt-get install salt-master` ja `sudo apt-get install salt-minion`. </br>
 ¨Sitten tein hakemiston: `mkdir /srv/salt/ssh`.</br>
 Loin uuden sls-tiedoston ssh kansioon komennolla: `sudoedit init.sls`, joka asentaa openssh-serverin.</br>
+Kopioin sshd_config-tiedoston ssh-kansioon: komennolla: `sudo cp sshd_config /srv/salt/ssh`.
 
 ![Screenshot 2022-11-09 160255](https://user-images.githubusercontent.com/116954333/200852135-d035dfe4-93ad-4f8f-a133-8a3a75f90d88.png)
+
+Seuraavaksi vaihdoin sshd_config-tiedostosta alkuperäisen portin 22 -> porttiin 8888. Komento oli: `sudoedit sshd_config` ja tiedostoa pystyi muokkaamaan.
+
+Tilaa ajaessa kohtasin muutaman ongelman koskien init.sls tiedoston rakennetta, joka on ensimmäisestä kuvasta havaittavissa. </br>
+Tekemäni muutokset näkee alla olevasta toisesta kuvasta, mutta piti siis ottaa turha `ssh:` tiedoston alusta pois. </br> 
+Sen lisäksi piti myös korjata sisennysvirheet, ottaa `pkg.installed:` riviltä ":"-merkki pois, koska sekin oli turha. </br>
+Lopuksi ongelma jonka löytämiseen meni eniten aikaa oli älytä laittaa `- source: salt://sshd_config` riville vielä oma kansioni, jossa tiedosto oli, eli ssh.
+
+![Screenshot 2022-11-09 163326](https://user-images.githubusercontent.com/116954333/200858604-08489d51-0575-4d26-a16b-15fc8a9ba6d0.png)
+
+Korjaustoimenpiteiden jälkeen tila kuitenkin toimi oletetusti.
+
+![Screenshot 2022-11-09 163514](https://user-images.githubusercontent.com/116954333/200860894-b51acc05-cd7e-433f-a117-c7706d60bf4d.png)
+
+Testasin ssh yhteyden toimivuuden käyttämällä toista virtuaalikonetta. </br>
+Testausta varten molempien virtuaalikoneiden piti olla verkossa "bridged adapter" asetuksella, jotta yhteys toimisi. </br>
+Käytin komentoa: `ssh -p 8888 julle@julle-TestiUbuntu`, yhteyden muodostamiseen juuri configuroidun portin 8888-kautta. </br>
+Yhteys näytti toimivan, joten ajoin vielä komennon: `ls`, jotta varmistin, että samat kansiot tulivat näkyviin. Ja tulihan ne, joten homma selvä.
+
+![Screenshot 2022-11-09 172859](https://user-images.githubusercontent.com/116954333/200871742-00dab812-4b1c-43ef-ab6f-a985d2a03c76.png)
+
+__c) 
+Aja jokin tila paikallisesti ilman master-slave arkkitehtuuria. </br>
+Analysoi debug-tulostetta. 'sudo salt-call --local state.apply hellotero -l debug'__
+
 
 
 ## Lähteet

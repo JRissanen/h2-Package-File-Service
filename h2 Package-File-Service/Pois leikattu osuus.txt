@@ -1,0 +1,13 @@
+Ensimmäiseksi avasin Virtual Boxissani olevan Ubuntu 22.04.1 Live-Serverin, jonne loin tekstitiedoston nimeltä ssh_yhteyden_testaus.txt</br>
+Loin tekstitiedoston komennolla: `nano ssh_yhteyden_testaus.txt`. Kirjoitin sisällöksi "Tyhjää täynnä".</br>
+Ajatukseni siis oli siirtää kyseinen tiedosto sftp yhteyden avulla puhtaalle virtuaalikoneelleni. Sftp käyttää myös ssh:ta, joten asennettava ohjelma on toimivuuden testaamisen kannalta sama, eli openssh-server.
+
+Seuraavaksi asensin ssh:n puhtaalle virtuaalikoneelle komennolla: `apt-get install openssh-server`. </br>
+Asennus onnistui ja tarkistin sen käyttämällä komentoa: `systemctl status ssh`. </br>
+Se näytti vihreällä Active-kohdan tekstin: `Active: active (running)`, joten kaikki kunnossa tähän asti.
+
+Sitten muodostin yhteyden komennolla: `sftp julle@julleserver`. </br>
+Käytin komentoa: `ls` nähdäkseni aiemmin luomani tiedoston ja komentoa: `get ssh_yhteyden_testaus.txt` kopioidakseni kyseisen tiedoston yhteyden testausta varten.</br>
+Kaikki toimi niinkuin pitikin, joten homma selvä.
+
+![Screenshot 2022-11-08 214649](https://user-images.githubusercontent.com/116954333/200665826-5763a5a1-52fc-4645-8d08-d756326839ac.png)

@@ -259,17 +259,20 @@ Luettavissa: https://terokarvinen.com/2018/pkg-file-service-control-daemons-with
 
 Ensimmäinen komentoni oli `sudo apt-get update`.</br>
 Sitten asensin Salt-Masterin ja Mionionin komennoilla: `sudo apt-get install salt-master` ja `sudo apt-get install salt-minion`. </br>
-¨Sitten tein hakemiston: `mkdir /srv/salt/h2a`.</br>
-Loin uuden sls-tiedoston komennolla: `sudoedit /srv/salt/h2a/init.sls`, joka asentaa openssh-serverin.</br>
-init.sls sisältö:</br>
+¨Sitten tein hakemiston: `mkdir /srv/salt/ssh`.</br>
+Loin uuden sls-tiedoston ssh kansioon komennolla: `sudoedit init.sls`, joka asentaa openssh-serverin.</br>
 
-
+![Screenshot 2022-11-09 160255](https://user-images.githubusercontent.com/116954333/200852135-d035dfe4-93ad-4f8f-a133-8a3a75f90d88.png)
 
 
 ## Lähteet
 
 Karvinen, T. 2018. Salt Quickstart - Salt Stack Master and Slave on Ubuntu Linux. </br>
 Luettavissa: https://terokarvinen.com/2018/salt-quickstart-salt-stack-master-and-slave-on-ubuntu-linux/ </br>
+Luettu: 8.11.2022.
+
+Karvinen, T. 2018. Pkg-File-Service – Control Daemons with Salt – Change SSH Server Port.
+Luettavissa: https://terokarvinen.com/2018/pkg-file-service-control-daemons-with-salt-change-ssh-server-port/
 Luettu: 8.11.2022.
 
 Saltstack. 2016. SaltStack Get Started. </br>

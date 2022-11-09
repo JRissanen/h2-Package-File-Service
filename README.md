@@ -246,7 +246,7 @@ Asensin tehtäviä varten puhtaan Linux Ubuntu 22.04.1 LTS järjestelmän Virtua
 Kaikki tehtävät on tehty edellä mainitussa ympäristössä. </br>
 Puhtaan virtuaalikoneen käyttäjäksi määritin "julle" ja koneen nimeksi "julle-TestiUbuntu".</br>
 Ssh-yhteyden testaamista varten käytin myös Linux Ubuntu 22.04.1 LTS Live-Server virtuaalikonetta, jonka käyttäjä on myös "julle" ja koneen nimi "julleserver". </br>
-Tehtävät on tehty 8.11.2022 klo 13:00 - 23:59, sekä 9.11.2022 klo 15:30 - 23:00.
+Tehtävät on tehty 8.11.2022 klo 13:00 - 23:00, sekä 9.11.2022 klo 15:30 - 23:00.
 
 __a) 
 Demonin asetukset. Säädä jokin demoni (asenna+tee asetukset+testaa) package-file-service -rakenteella.</br>
@@ -294,6 +294,11 @@ __c)
 Aja jokin tila paikallisesti ilman master-slave arkkitehtuuria. </br>
 Analysoi debug-tulostetta. 'sudo salt-call --local state.apply hellotero -l debug'__
 
+Tarkistin ensin oman "helloworld" tiedostoni komennolla: `cat helloworld`. </br>
+Sen jälkeen tulostin debug login komennolla: `sudo salt-call --local state.apply helloworld -l debug`.
+
+![Screenshot 2022-11-09 175045](https://user-images.githubusercontent.com/116954333/200878283-da958e25-8c17-4c4b-aee3-c53229624189.png)
+
 
 
 ## Lähteet
@@ -302,8 +307,8 @@ Karvinen, T. 2018. Salt Quickstart - Salt Stack Master and Slave on Ubuntu Linux
 Luettavissa: https://terokarvinen.com/2018/salt-quickstart-salt-stack-master-and-slave-on-ubuntu-linux/ </br>
 Luettu: 8.11.2022.
 
-Karvinen, T. 2018. Pkg-File-Service – Control Daemons with Salt – Change SSH Server Port.
-Luettavissa: https://terokarvinen.com/2018/pkg-file-service-control-daemons-with-salt-change-ssh-server-port/
+Karvinen, T. 2018. Pkg-File-Service – Control Daemons with Salt – Change SSH Server Port. </br>
+Luettavissa: https://terokarvinen.com/2018/pkg-file-service-control-daemons-with-salt-change-ssh-server-port/ </br>
 Luettu: 8.11.2022.
 
 Saltstack. 2016. SaltStack Get Started. </br>

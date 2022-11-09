@@ -294,7 +294,7 @@ __c)
 Aja jokin tila paikallisesti ilman master-slave arkkitehtuuria. </br>
 Analysoi debug-tulostetta. 'sudo salt-call --local state.apply hellotero -l debug'__
 
-Tarkistin ensin oman "helloworld" tiedostoni komennolla: `cat helloworld`. </br>
+Tarkistin ensin oman "helloworld" tiedostoni komennolla: `cat init.sls`. </br>
 Sen jälkeen tulostin debug login komennolla: `sudo salt-call --local state.apply helloworld -l debug`.
 
 ![Screenshot 2022-11-09 175045](https://user-images.githubusercontent.com/116954333/200878283-da958e25-8c17-4c4b-aee3-c53229624189.png)

@@ -299,7 +299,7 @@ Sen jälkeen tulostin debug login komennolla: `sudo salt-call --local state.appl
 
 ![Screenshot 2022-11-09 175045](https://user-images.githubusercontent.com/116954333/200878283-da958e25-8c17-4c4b-aee3-c53229624189.png)
 
-
+En oikeastaan osaa kovin hyvin analysoida debug-tulostusta, joten ensi tunnilla kun käydään läksyt läpi, niin varmasti saan siihenkin selkeyttä.
 
 ## Lähteet
 

@@ -264,7 +264,7 @@ Luettavissa: https://terokarvinen.com/2018/pkg-file-service-control-daemons-with
 
 Ensimmäinen komentoni oli `sudo apt-get update`.</br>
 Sitten asensin Salt-Masterin ja Mionionin komennoilla: `sudo apt-get install salt-master` ja `sudo apt-get install salt-minion`. </br>
-¨Sitten tein hakemiston: `mkdir /srv/salt/ssh`.</br>
+Sitten tein hakemiston: `mkdir /srv/salt/ssh`.</br>
 Loin uuden sls-tiedoston ssh kansioon komennolla: `sudoedit init.sls`, joka asentaa openssh-serverin.</br>
 Kopioin sshd_config-tiedoston ssh-kansioon: komennolla: `sudo cp sshd_config /srv/salt/ssh`.
 

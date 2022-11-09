@@ -256,7 +256,7 @@ Harjoitusta varten tulee siis tehdä alusta ja raportoida samalla.__
 
 __b) 
 Asenna Salt herra-orja niin, että molemmat ovat samalla koneella. </br>
-Voit tehdä ne esimerkiksi uudelle virtuaalikoneelle, niin pääset kokeilemaan puhtaalta pöydältä.
+Voit tehdä ne esimerkiksi uudelle virtuaalikoneelle, niin pääset kokeilemaan puhtaalta pöydältä.__
 
 Asensin tehtävässä a) openssh-serverin ja vaihdoin ssh:n portin.</br>
 Käytin mallina Tero Karvisen artikkelia: Pkg-File-Service – Control Daemons with Salt – Change SSH Server Port. </br>
